@@ -85,4 +85,27 @@ def button_location():
 
 print(button_location())
 
+def tick(my_widget, my_var):
+    time_string = time.strftime("%H:%M:%S")
+    my_var.set(time_string)
+    my_widget.after(10, tick, my_widget, my_var)
+    return tick
+
+
+
+def rst():
+    L1 = Label(top, font=("times", 18, "bold"), text="Result", fg="green")
+    L1.place(x=150, y=42)
+    E1 = Entry(top, textvar=textin, width=int(34.5), bd=5)
+    E1.place(x=18, y=75)
+    L2 = Label(top, text="Clock", fg="blue")
+    L2.place(x=200, y=2)
+
+    var = StringVar()
+    E2 = Entry(top, textvariable=var, width=10, bd=1)
+    E2.place(x=250, y=1)
+    tick(E2, var)
+
+print(rst())
+
 top.mainloop()
