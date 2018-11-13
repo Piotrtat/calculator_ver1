@@ -108,4 +108,46 @@ def rst():
 
 print(rst())
 
+def dialog():
+    my_message = messagebox.showinfo("About calculator" ,"This calculator is made by Piotr Tatarski. \nIt is dedicated to my wife Natalie and my dog named Diesel.")
+
+def my_quest():
+    top_2 = Tk()
+    top_2.geometry("200x200")
+
+    global var1
+    global var2
+    Label(top_2, text="Your sex:").grid(row=0, sticky=W)
+    var1 = IntVar()
+    Checkbutton(top_2, text="male", variable=var1).grid(row=1, sticky=W)
+    var2 = IntVar()
+    Checkbutton(top_2, text="female", variable=var2).grid(row=2, sticky=W)
+    Button(top_2, text='Quit', command=quit).grid(row=3, sticky=W, pady=4)
+    Button(top_2, text='Show', command=my_quest).grid(row=4, sticky=W, pady=4)
+    print("male: %d,\nfemale: %d" % (var1.get(), var2.get()))
+
+
+def options():
+    menubar = Menu(top)
+    filemenu = Menu(menubar, tearoff=0)
+    filemenu.add_command(label="Exit", command=top.quit)
+    menubar.add_cascade(label="File", menu=filemenu)
+
+    editmenu = Menu(menubar, tearoff=0)
+    editmenu.add_command(label="Delete", command=clrbut)
+    menubar.add_cascade(label="Edit", menu=editmenu)
+
+
+    helpmenu = Menu(menubar, tearoff=0)
+    helpmenu.add_command(label="About...", command=dialog)
+    helpmenu.add_checkbutton(label="Questionnaire", command=my_quest)
+    menubar.add_cascade(label="Help", menu=helpmenu)
+
+    top.config(menu=menubar)
+
+print(options())
+
+
+top.configure(bg="LightBlue")
+
 top.mainloop()
